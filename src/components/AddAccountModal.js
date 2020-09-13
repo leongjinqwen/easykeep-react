@@ -40,7 +40,7 @@ export default function AddAccountModal({ addAccount,businessId }) {
   const [open, setOpen] = useState(false);
   const [accDetails, setAccDetails] = useState({
     name: '',
-    acc_type: 8,
+    acc_type: 8, // default value for select option
     acc_num: '',
   });
 

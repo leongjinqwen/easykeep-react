@@ -11,6 +11,7 @@ import SignInPage from '../pages/SignInPage';
 import ProfilePage from '../pages/ProfilePage';
 import AssessmentPage from '../pages/AssessmentPage';
 import TransactionPage from '../pages/TransactionPage';
+import CreateTransactionPage from '../pages/CreateTransactionPage';
 
 const drawerWidth = 240;
 
@@ -103,7 +104,6 @@ export default function NavBar({currentUser,setCurrentUser}) {
 
   return (
     <div className={classes.root}>
-      {/* <CssBaseline /> */}
       <AppBar
         position="fixed"
         className={clsx(classes.appBar, {
@@ -141,7 +141,7 @@ export default function NavBar({currentUser,setCurrentUser}) {
         </div>
         <Divider />
         <List>
-          <ListItem button>
+          <ListItem button onClick={()=>history.push(`/transactions/${localStorage.getItem('assess')}`)}>
             <ListItemIcon>
               <QueueRounded />
             </ListItemIcon>
@@ -159,11 +159,11 @@ export default function NavBar({currentUser,setCurrentUser}) {
             </ListItemIcon>
             <ListItemText primary="Analysis" />
           </ListItem>
-          <ListItem button>
+          <ListItem button onClick={()=>history.push(`/users/${currentUser.id}`)} >
             <ListItemIcon>
               <AccountBoxRounded />
             </ListItemIcon>
-            <ListItemText primary="Profile" onClick={()=>history.push(`/users/${currentUser.id}`)} />
+            <ListItemText primary="Profile" />
           </ListItem>
         </List>
         
@@ -202,6 +202,7 @@ export default function NavBar({currentUser,setCurrentUser}) {
           <Route path="/signin" component={() => <SignInPage setCurrentUser={setCurrentUser} />} />
           <Route path="/users/:userid" component={() => <ProfilePage currentUser={currentUser} />} />
           <Route path="/assessments/:assessid" component={() => <AssessmentPage currentUser={currentUser} />} />
+          <Route path="/transactions/new/:assessid" component={() => <CreateTransactionPage currentUser={currentUser} />} />
           <Route path="/transactions/:assessid" component={() => <TransactionPage currentUser={currentUser} />} />
         </Switch>
       </main>

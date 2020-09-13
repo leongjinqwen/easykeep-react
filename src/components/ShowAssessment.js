@@ -40,6 +40,10 @@ export default function ShowAssessment({business}) {
   const addAssess = (item) => {
     setAssessments([...assessments, item])
   }
+  const selectAssess = (id) => {
+    localStorage.setItem('assess', id)
+    history.push(`/assessments/${id}`)
+  }
   return (
     <div className={classes.root}>
       <Accordion>
@@ -55,7 +59,7 @@ export default function ShowAssessment({business}) {
               return (
                 <AccordionDetails key={`assess-${a.id}`} >
                   {/* link to each assessment page (simple edit card) */}
-                  <Button color='primary' startIcon={<FolderIcon />} onClick={()=>history.push(`/assessments/${a.id}`)} >
+                  <Button color='primary' startIcon={<FolderIcon />} onClick={()=>selectAssess(a.id)} >
                     {new Date(a.y_e).getFullYear()+'-'+(new Date(a.y_e).getMonth()+ 1)+'-'+new Date(a.y_e).getDate()} 
                   </Button>
                 </AccordionDetails>

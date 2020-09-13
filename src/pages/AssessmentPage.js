@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams,useHistory } from "react-router-dom"
 import { toast } from 'react-toastify';
-import { Typography, Card, Button, CardActions, CardContent, List, ListItem, ListItemText, Grid } from '@material-ui/core';
+import { Typography, Card, Button, IconButton, CardActions, CardContent, List, ListItem, ListItemText, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import AddAccountModal from '../components/AddAccountModal';
 import ViewListRoundedIcon from '@material-ui/icons/ViewListRounded';
+import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
     display:'flex',
   }
 }));
-
 
 const AssessmentPage = () => {
   const params = useParams()
@@ -76,7 +76,7 @@ const AssessmentPage = () => {
             <Card className={classes.root}>
               <CardContent>
                 <Typography className={classes.title} color="textSecondary" gutterBottom>
-                {assess.business} : Y/A {assess.y_a}
+                  {assess.business} : Y/A {assess.y_a}
                 </Typography>
                 <Typography className={classes.pos} color="textSecondary">
                   Year Ended : {new Date(assess.y_e).getDate()+"-"+(new Date(assess.y_e).getMonth()+ 1)+'-'+new Date(assess.y_e).getFullYear()} 
@@ -85,6 +85,9 @@ const AssessmentPage = () => {
                   <Button color='primary' startIcon={<ViewListRoundedIcon />} onClick={()=>history.push(`/transactions/${assess.id}`)} >
                     Transactions
                   </Button>
+                  <IconButton onClick={()=>history.push(`/transactions/new/${assess.id}`)}>
+                    <AddCircleRoundedIcon color='primary' />
+                  </IconButton>
                 </Typography>
               </CardContent>
               <CardActions>
