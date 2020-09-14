@@ -48,7 +48,7 @@ export default function AddAssessmentModal({ business, addAssess }) {
   };
 
   const handleDateChange = (date) =>{
-    setSelectedDate(date)
+    setSelectedDate(date.toDateString())
   }
   const handleCreate = (e) => {
     e.preventDefault()

@@ -72,7 +72,7 @@ export default function CreateTransactionPage() {
     return true ? total === 0 : false
   }
   const handleDateChange = (date) =>{
-    setSelectedDate(date)
+    setSelectedDate(date.toDateString())
   }
   useEffect(() => {
     axios.get(`http://localhost:5000/api/v1/assessment/show/${params.assessid}`,

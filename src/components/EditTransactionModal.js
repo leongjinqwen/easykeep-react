@@ -42,7 +42,6 @@ const useStyles = makeStyles((theme) => ({
 export default function EditTransactionModal({ handleClose, open, assessId, setRecordDetails, recordDetails }) {
   const classes = useStyles();
   const [accounts, setAccounts] = useState([]);
-  const [selectedDate, setSelectedDate] = useState(new Date())
 
   useEffect(() => {
     axios.get(`http://localhost:5000/api/v1/assessment/show/${assessId}`,
@@ -69,10 +68,9 @@ export default function EditTransactionModal({ handleClose, open, assessId, setR
   }
 
   const handleDateChange = (date) =>{
-    setSelectedDate(date)
     setRecordDetails({
       ...recordDetails,
-      date:date
+      date: date.toDateString()
     })
   }
 
