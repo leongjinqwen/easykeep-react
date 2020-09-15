@@ -128,12 +128,12 @@ export default function CreateTransactionPage() {
         title="Transaction Entries"
         columns={[
           { title: 'Doc. Ref', field: 'reference' },
-          { title: 'Description', field: 'description' },
           {
             title: 'Account',
             field: 'account',
             lookup: accounts,
           },
+          { title: 'Description', field: 'description' },
           { title: 'Amount', field: 'amount', type: 'numeric' },
         ]}
         data={state.data}

@@ -4,9 +4,8 @@ import { useParams,useHistory } from "react-router-dom"
 import { toast } from 'react-toastify';
 import { Typography, Card, Button, IconButton, CardActions, CardContent, List, ListItem, ListItemText, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { ViewListRounded, AddCircleRounded } from '@material-ui/icons';
 import AddAccountModal from '../components/AddAccountModal';
-import ViewListRoundedIcon from '@material-ui/icons/ViewListRounded';
-import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -64,7 +63,6 @@ const AssessmentPage = () => {
   const addAccount = (item) => {
     setAccounts([...accounts,item])
   }
-  // transaction page to list out all record, then click to create/edit record
   return (
     <>
       <div className={classes.container}>
@@ -82,11 +80,12 @@ const AssessmentPage = () => {
                   Year Ended : {new Date(assess.y_e).getDate()+"-"+(new Date(assess.y_e).getMonth()+ 1)+'-'+new Date(assess.y_e).getFullYear()} 
                 </Typography>
                 <Typography variant="body2" component="p">
-                  <Button color='primary' startIcon={<ViewListRoundedIcon />} onClick={()=>history.push(`/transactions/${assess.id}`)} >
+                  {/* transaction page to list out all record */}
+                  <Button color='primary' startIcon={<ViewListRounded />} onClick={()=>history.push(`/transactions/${assess.id}`)} >
                     Transactions
                   </Button>
                   <IconButton onClick={()=>history.push(`/transactions/new/${assess.id}`)}>
-                    <AddCircleRoundedIcon color='primary' />
+                    <AddCircleRounded color='primary' />
                   </IconButton>
                 </Typography>
               </CardContent>

@@ -8,7 +8,7 @@ import EditTransactionModal from '../components/EditTransactionModal';
 import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
 
 const columns = [
-  { id: 'date', label: 'Date', minWidth: 50,
+  { id: 'date', label: 'Date', minWidth: 75,
     format: (value) => (new Date(value).getDate()+"-"+(new Date(value).getMonth()+ 1)+'-'+new Date(value).getFullYear()),
   },
   { id: 'account', label: 'Account', minWidth: 50 },
@@ -17,7 +17,7 @@ const columns = [
   { id: 'description', label: 'Description', minWidth: 200 },
   {
     id: 'amount',
-    label: 'Amount',
+    label: 'Amount ($)',
     minWidth: 50,
     align: 'right',
     format: (value) => value.toFixed(2),
@@ -30,7 +30,7 @@ const useStyles = makeStyles({
     textAlign: 'right'
   },
   container: {
-    maxHeight: 440,
+    maxHeight: 500,
   },
 });
 

@@ -12,6 +12,7 @@ import ProfilePage from '../pages/ProfilePage';
 import AssessmentPage from '../pages/AssessmentPage';
 import TransactionPage from '../pages/TransactionPage';
 import CreateTransactionPage from '../pages/CreateTransactionPage';
+import ReportsPage from '../pages/ReportsPage';
 
 const drawerWidth = 240;
 
@@ -147,7 +148,7 @@ export default function NavBar({currentUser,setCurrentUser}) {
             </ListItemIcon>
             <ListItemText primary="Transaction" />
           </ListItem>
-          <ListItem button>
+          <ListItem button onClick={()=>history.push('/reports')}>
             <ListItemIcon>
               <LibraryBooksRounded />
             </ListItemIcon>
@@ -200,10 +201,11 @@ export default function NavBar({currentUser,setCurrentUser}) {
           </Route>
           <Route path="/signup" component={() => <SignUpPage setCurrentUser={setCurrentUser} />} />
           <Route path="/signin" component={() => <SignInPage setCurrentUser={setCurrentUser} />} />
-          <Route path="/users/:userid" component={() => <ProfilePage currentUser={currentUser} />} />
-          <Route path="/assessments/:assessid" component={() => <AssessmentPage currentUser={currentUser} />} />
-          <Route path="/transactions/new/:assessid" component={() => <CreateTransactionPage currentUser={currentUser} />} />
-          <Route path="/transactions/:assessid" component={() => <TransactionPage currentUser={currentUser} />} />
+          <Route path="/reports" component={() => <ReportsPage />} />
+          <Route path="/users/:userid" component={() => <ProfilePage />} />
+          <Route path="/assessments/:assessid" component={() => <AssessmentPage />} />
+          <Route path="/transactions/new/:assessid" component={() => <CreateTransactionPage />} />
+          <Route path="/transactions/:assessid" component={() => <TransactionPage />} />
         </Switch>
       </main>
     </div>
