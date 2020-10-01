@@ -50,7 +50,6 @@ const AssessmentPage = () => {
       }
     })
     .then(result => {
-      console.log(result.data)
       setAssess(result.data.assessment)
       setAccounts(result.data.accounts)
     })
@@ -102,7 +101,7 @@ const AssessmentPage = () => {
             {
               accounts.map(acc=>{
                 return (
-                  <ListItem key={acc.id}>
+                  <ListItem key={acc.id} onClick={()=>history.push(`/transactions/${localStorage.assess}/${acc.id}`)}>
                     <ListItemText
                       primary={`${acc.acc_num} : ${acc.name}`}
                     />
