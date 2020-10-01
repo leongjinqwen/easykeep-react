@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
+import { amountFormatter } from '../utils/formatter';
 
 const useStyles = makeStyles({
   table: {
@@ -26,7 +27,7 @@ export default function BalSheet({ accounts, assess }) {
       return(
         <TableRow key={a.account_number}>
           <TableCell component="th" scope="row">{a.account_number} - {a.account_name}</TableCell>
-          <TableCell align="right">{(a.amount).toFixed(2)}</TableCell>
+          <TableCell align="right">{amountFormatter.format(a.amount)}</TableCell>
         </TableRow>
       )
     })
@@ -46,33 +47,41 @@ export default function BalSheet({ accounts, assess }) {
             </TableRow>
           </TableHead>
           <TableBody>
-            { accounts ? renderAccounts(accounts.f_assets.list) : null }
-            { accounts ? renderAccounts(accounts.c_assets.list) : null }
+            { accounts ? 
+            <>
+            {renderAccounts(accounts.f_assets.list)}
+            {renderAccounts(accounts.c_assets.list)}
+            </> 
+            : null }
             <TableRow className={classes.bold}>
               <TableCell component="th" scope="row"><strong>Total ASSETS</strong></TableCell>
-              <TableCell align="right"><strong>{(accounts.f_assets.total+accounts.c_assets.total).toFixed(2)}</strong></TableCell>
+              <TableCell align="right"><strong>{amountFormatter.format(accounts.f_assets.total+accounts.c_assets.total)}</strong></TableCell>
             </TableRow>
 
-            { accounts ? renderAccounts(accounts.n_c_liabilities.list) : null }
-            { accounts ? renderAccounts(accounts.c_liabilities.list) : null }
+            { accounts ? 
+            <>
+            {renderAccounts(accounts.n_c_liabilities.list)}
+            {renderAccounts(accounts.c_liabilities.list)}
+            </>
+             : null }
             <TableRow className={classes.bold}>
               <TableCell component="th" scope="row">Total LIABILITIES</TableCell>
-              <TableCell align="right">{(-(accounts.n_c_liabilities.total+accounts.c_liabilities.total)).toFixed(2)}</TableCell>
+              <TableCell align="right">{amountFormatter.format(-(accounts.n_c_liabilities.total+accounts.c_liabilities.total))}</TableCell>
             </TableRow>
 
             { accounts ? renderAccounts(accounts.equity.list) : null }
             <TableRow>
               <TableCell component="th" scope="row"><strong>Add : Income & Expenses</strong></TableCell>
-              <TableCell align="right">{(-(accounts.pl_bal)).toFixed(2)}</TableCell>
+              <TableCell align="right">{amountFormatter.format(-(accounts.pl_bal))}</TableCell>
             </TableRow>
             <TableRow className={classes.bold}>
               <TableCell component="th" scope="row">Total Equity</TableCell>
-              <TableCell align="right">{(-(accounts.equity.total+accounts.pl_bal)).toFixed(2)}</TableCell>
+              <TableCell align="right">{amountFormatter.format(-(accounts.equity.total+accounts.pl_bal))}</TableCell>
             </TableRow>
 
             <TableRow className={classes.bold}>
               <TableCell component="th" scope="row"><strong>Total LIABILITIES & EQUITY</strong></TableCell>
-              <TableCell align="right"><strong>{(-(accounts.n_c_liabilities.total+accounts.c_liabilities.total+accounts.equity.total+accounts.pl_bal)).toFixed(2)}</strong></TableCell>
+              <TableCell align="right"><strong>{amountFormatter.format(-(accounts.n_c_liabilities.total+accounts.c_liabilities.total+accounts.equity.total+accounts.pl_bal))}</strong></TableCell>
             </TableRow>
           </TableBody>
         </Table>

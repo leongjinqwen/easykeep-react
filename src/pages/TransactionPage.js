@@ -6,6 +6,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import EditTransactionModal from '../components/EditTransactionModal';
 import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
+import { amountFormatter } from '../utils/formatter';
 
 const columns = [
   { id: 'date', label: 'Date', minWidth: 75,
@@ -20,7 +21,7 @@ const columns = [
     label: 'Amount ($)',
     minWidth: 50,
     align: 'right',
-    format: (value) => value.toFixed(2),
+    format: (value) => amountFormatter.format(value),
   },
 ];
 
@@ -63,7 +64,7 @@ export default function TransactionPage() {
     return (total - 0)
   }
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/v1/records/${params.assessid}`,
+    axios.get(`http://localhost:5000/api/v1/records/${params.assessid}/all`,
     {
       headers: {
         "Authorization": "Bearer " + localStorage.getItem("token")

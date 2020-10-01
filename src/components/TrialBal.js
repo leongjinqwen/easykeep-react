@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
+import { amountFormatter } from '../utils/formatter';
 
 const useStyles = makeStyles({
   table: {
@@ -63,13 +64,13 @@ export default function TrialBal({ accounts, assess }) {
                 {
                   acc.amount > 0 ? 
                   <>
-                    <TableCell align="right">{acc.amount.toFixed(2)}</TableCell>
+                    <TableCell align="right">{amountFormatter.format(acc.amount)}</TableCell>
                     <TableCell align="right"></TableCell>
                   </>
                   :
                   <>
                     <TableCell align="right"></TableCell>
-                    <TableCell align="right">{(-acc.amount).toFixed(2)}</TableCell>
+                    <TableCell align="right">{amountFormatter.format(-acc.amount)}</TableCell>
                   </>
                 }
               </TableRow>
@@ -78,8 +79,8 @@ export default function TrialBal({ accounts, assess }) {
                 <TableCell></TableCell>
                 <TableCell></TableCell>
                 <TableCell></TableCell>
-                <TableCell align="right"><strong>{balances.debit.toFixed(2)}</strong></TableCell>
-                <TableCell align="right"><strong>{(-balances.credit).toFixed(2)}</strong></TableCell>
+                <TableCell align="right"><strong>{amountFormatter.format(balances.debit)}</strong></TableCell>
+                <TableCell align="right"><strong>{amountFormatter.format(-balances.credit)}</strong></TableCell>
               </TableRow>
           </TableBody>
         </Table>

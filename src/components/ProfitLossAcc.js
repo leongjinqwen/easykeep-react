@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
+import { amountFormatter } from '../utils/formatter';
 
 const useStyles = makeStyles({
   table: {
@@ -27,7 +28,7 @@ export default function ProfitLossAcc({ accounts, assess }) {
         <TableRow key={a.account_number}>
           <TableCell component="th" scope="row">{a.account_number}</TableCell>
           <TableCell>{a.account_name}</TableCell>
-          <TableCell align="right">{(-a.amount).toFixed(2)}</TableCell>
+          <TableCell align="right">{amountFormatter.format(-a.amount)}</TableCell>
         </TableRow>
       )
     })
@@ -48,19 +49,23 @@ export default function ProfitLossAcc({ accounts, assess }) {
             </TableRow>
           </TableHead>
           <TableBody>
-            { accounts ? renderAccounts(accounts.sales.list) : null }
-            { accounts ? renderAccounts(accounts.incomes.list) : null }
-            { accounts ? renderAccounts(accounts.purchases.list) : null }
+            { accounts ? 
+            <>
+            {renderAccounts(accounts.sales.list)} 
+            {renderAccounts(accounts.incomes.list)}
+            {renderAccounts(accounts.purchases.list)}
+            </>
+            : null }
             <TableRow className={classes.bold}>
               <TableCell component="th" scope="row">Gross PROFIT/-LOSS</TableCell>
               <TableCell></TableCell>
-              <TableCell align="right">{(-(accounts.sales.total+accounts.incomes.total)-accounts.purchases.total).toFixed(2)}</TableCell>
+              <TableCell align="right">{amountFormatter.format(-(accounts.sales.total+accounts.incomes.total)-accounts.purchases.total)}</TableCell>
             </TableRow>
             { accounts ? renderAccounts(accounts.expenses.list) : null }
             <TableRow className={classes.bold}>
-              <TableCell component="th" scope="row">Net PROFIT/-LOSS</TableCell>
+              <TableCell component="th" scope="row"><strong>Net PROFIT/-LOSS</strong></TableCell>
               <TableCell></TableCell>
-              <TableCell align="right">{(-(accounts.sales.total+accounts.incomes.total)-accounts.purchases.total-accounts.expenses.total).toFixed(2)}</TableCell>
+              <TableCell align="right"><strong>{amountFormatter.format(-(accounts.sales.total+accounts.incomes.total)-accounts.purchases.total-accounts.expenses.total)}</strong></TableCell>
             </TableRow>
           </TableBody>
         </Table>
