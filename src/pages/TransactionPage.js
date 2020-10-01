@@ -6,11 +6,11 @@ import { useParams, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import EditTransactionModal from '../components/EditTransactionModal';
 import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
-import { amountFormatter } from '../utils/formatter';
+import { amountFormatter,dateFormatter } from '../utils/formatter';
 
 const columns = [
   { id: 'date', label: 'Date', minWidth: 75,
-    format: (value) => (new Date(value).getDate()+"-"+(new Date(value).getMonth()+ 1)+'-'+new Date(value).getFullYear()),
+    format: (value) => (dateFormatter(value)),
   },
   { id: 'account', label: 'Account', minWidth: 50 },
   { id: 'account_name', label: 'Account Name', minWidth: 100 },

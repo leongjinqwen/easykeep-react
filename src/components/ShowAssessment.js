@@ -6,6 +6,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import FolderIcon from '@material-ui/icons/Folder';
 import AddAssessmentModal from './AddAssessmentModal';
 import { useHistory } from "react-router-dom"
+import { dateFormatter } from '../utils/formatter';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -60,7 +61,7 @@ export default function ShowAssessment({business}) {
                 <AccordionDetails key={`assess-${a.id}`} >
                   {/* link to each assessment page (simple edit card) */}
                   <Button color='primary' startIcon={<FolderIcon />} onClick={()=>selectAssess(a.id)} >
-                    {new Date(a.y_e).getFullYear()+'-'+(new Date(a.y_e).getMonth()+ 1)+'-'+new Date(a.y_e).getDate()} 
+                    {dateFormatter(a.y_e)} 
                   </Button>
                 </AccordionDetails>
               )

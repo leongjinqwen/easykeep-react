@@ -6,6 +6,7 @@ import { Typography, Card, Button, IconButton, CardActions, CardContent, List, L
 import { makeStyles } from '@material-ui/core/styles';
 import { ViewListRounded, AddCircleRounded } from '@material-ui/icons';
 import AddAccountModal from '../components/AddAccountModal';
+import { dateFormatter } from '../utils/formatter';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -76,7 +77,7 @@ const AssessmentPage = () => {
                   {assess.business} : Y/A {assess.y_a}
                 </Typography>
                 <Typography className={classes.pos} color="textSecondary">
-                  Year Ended : {new Date(assess.y_e).getDate()+"-"+(new Date(assess.y_e).getMonth()+ 1)+'-'+new Date(assess.y_e).getFullYear()} 
+                  Year Ended : {dateFormatter(assess.y_e)} 
                 </Typography>
                 <Typography variant="body2" component="p">
                   {/* transaction page to list out all record */}

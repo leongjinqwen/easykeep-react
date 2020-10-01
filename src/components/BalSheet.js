@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
-import { amountFormatter } from '../utils/formatter';
+import { amountFormatter,dateFormatter } from '../utils/formatter';
 
 const useStyles = makeStyles({
   table: {
@@ -36,7 +36,7 @@ export default function BalSheet({ accounts, assess }) {
   return (
     <>
       <h3 className={classes.header}>
-        Balance Sheet Statement As At {assess ? new Date(assess.y_e).getDate()+"-"+(new Date(assess.y_e).getMonth()+ 1)+'-'+new Date(assess.y_e).getFullYear() : null}
+        Balance Sheet Statement As At {assess ? dateFormatter(assess.y_e) : null}
       </h3>
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="simple table">

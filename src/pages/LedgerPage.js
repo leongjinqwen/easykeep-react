@@ -4,11 +4,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from '@material-ui/core';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { amountFormatter } from '../utils/formatter';
+import { amountFormatter,dateFormatter } from '../utils/formatter';
 
 const columns = [
   { id: 'date', label: 'Date', minWidth: 75,
-    format: (value) => (new Date(value).getDate()+"-"+(new Date(value).getMonth()+ 1)+'-'+new Date(value).getFullYear()),
+    format: (value) => (dateFormatter(value)),
   },
   { id: 'reference', label: 'Reference', minWidth: 50 },
   { id: 'description', label: 'Description', minWidth: 200 },
