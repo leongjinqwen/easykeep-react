@@ -14,6 +14,7 @@ import TransactionPage from '../pages/TransactionPage';
 import CreateTransactionPage from '../pages/CreateTransactionPage';
 import ReportsPage from '../pages/ReportsPage';
 import LedgerPage from '../pages/LedgerPage';
+import Dashboard from '../pages/Dashboard';
 
 const drawerWidth = 240;
 
@@ -143,6 +144,12 @@ export default function NavBar({currentUser,setCurrentUser}) {
         </div>
         <Divider />
         <List>
+          <ListItem button onClick={()=>history.push(`/dashboard`)}>
+            <ListItemIcon>
+              <InsertChartRounded />
+            </ListItemIcon>
+            <ListItemText primary="Analysis" />
+          </ListItem>
           <ListItem button onClick={()=>history.push(`/transactions/${localStorage.getItem('assess')}`)}>
             <ListItemIcon>
               <QueueRounded />
@@ -155,12 +162,7 @@ export default function NavBar({currentUser,setCurrentUser}) {
             </ListItemIcon>
             <ListItemText primary="Report" />
           </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <InsertChartRounded />
-            </ListItemIcon>
-            <ListItemText primary="Analysis" />
-          </ListItem>
+          
           <ListItem button onClick={()=>history.push(`/users/${currentUser.id}`)} >
             <ListItemIcon>
               <AccountBoxRounded />
@@ -202,6 +204,7 @@ export default function NavBar({currentUser,setCurrentUser}) {
           </Route>
           <Route path="/signup" component={() => <SignUpPage setCurrentUser={setCurrentUser} />} />
           <Route path="/signin" component={() => <SignInPage setCurrentUser={setCurrentUser} />} />
+          <Route path="/dashboard" component={() => <Dashboard />} />
           <Route path="/reports" component={() => <ReportsPage />} />
           <Route path="/users/:userid" component={() => <ProfilePage />} />
           <Route path="/assessments/:assessid" component={() => <AssessmentPage />} />

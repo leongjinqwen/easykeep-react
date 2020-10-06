@@ -102,7 +102,7 @@ const AssessmentPage = () => {
             {
               accounts.map(acc=>{
                 return (
-                  <ListItem key={acc.id} onClick={()=>history.push(`/transactions/${localStorage.assess}/${acc.id}`)}>
+                  <ListItem button key={acc.id} onClick={()=>history.push(`/transactions/${localStorage.assess}/${acc.id}`)}>
                     <ListItemText
                       primary={`${acc.acc_num} : ${acc.name}`}
                     />

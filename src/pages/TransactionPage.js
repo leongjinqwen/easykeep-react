@@ -79,7 +79,7 @@ export default function TransactionPage() {
       console.log('ERROR: ', error.response.data)
       toast.error(error.response.data.message)
     })
-  }, [open])
+  }, [open, params.assessid])
 
   const onOpenModal = (record) => {
     setOpen(true);
